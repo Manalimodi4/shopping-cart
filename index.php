@@ -17,6 +17,7 @@ echo "Connected successfully";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
     <link href="styles.css" rel="stylesheet">
+    <link >
     <script src="main.js"></script>
   </head>
   <body>
