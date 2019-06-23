@@ -9,6 +9,7 @@
     font-family: 'Product Sans';
 }
 
+input[type=number],
 input[type=text],
 input[type=email] {
     width: 100%;

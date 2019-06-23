@@ -13,7 +13,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "shoppingcartdb";
+$dbname = "cartdb";
 $count = 0;
 
 // Creating connection
@@ -37,18 +37,22 @@ if (!$conn) {
 				</div>
 				<div class="modal-body">
 					<form method="POST" action="adduser.php">
+          <h4> User Id</h4>
+						<input type="number" id="id" name="id" placeholder="Enter Id"/><br />
 						<h4>Name</h4>
-						<input type="text" id="name" name="name" placeholder="Enter name"/><br />
+						<input type="text" id="Name" name="Name" placeholder="Enter name"/><br />
 						<h4>Email</h4>
-						<input type="email" id="email" name="email" placeholder="Enter email" /><br />
+						<input type="email" id="Email" name="Email" placeholder="Enter email" /><br />
 						<h4>Password</h4>
-						<input type="text" id="password" name="password" placeholder="Enter password"/><br />
+						<input type="text" id="Password" name="Password" placeholder="Enter password"/><br />
             <h4> Credit </h4>
-            <input type= "text" id="credit" name="credit" placeholder="Enter amount" /><br />
+            <input type= "number" id="Credit" name="Credit" placeholder="Enter amount" /><br />
+            <h4> Status </h4>
+            <input type= "text" id="Status" name="Status" placeholder="Enter Status" /><br />
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" data-dismiss="modal">Add</button>
+					<input type="submit" class="btn btn-primary" value="Add User"/>
 				</div>
         </form>
 			</div>
@@ -62,9 +66,11 @@ echo "<table border='1'>
 <tr>
 <th>Id</th>
 <th>Name</th>
-<th>email</th>
-<th>password</th>
-<th>credit</th>
+<th>Email</th>
+<th>Password</th>
+<th>Credit</th>
+<th>Status</th>
+<th>Edit</th>
 </tr>";
 
 
@@ -72,11 +78,14 @@ echo "<table border='1'>
     while($row = $result->fetch_assoc()){
         
         echo "<tr>";
-        echo "<td>" . $row['Id'] . "</td>";
+        echo "<td>" . $row['id'] . "</td>";
         echo "<td>" . $row['Name'] . "</td>";
         echo "<td>" . $row['Email'] . "</td>";
         echo "<td>" . $row['Password'] . "</td>";
         echo "<td>" . $row['Credit'] . "</td>";
+        echo "<td>" . $row['Status'] . "</td>";
+        echo "<td><a href='records.php?id=" . $row['id']. "'>Edit</a></td>";
+        echo "<td><a href='delete.php?id=" . $row['id'] . "'>Delete</a></td>";
         echo "</tr>";
     }
 }
