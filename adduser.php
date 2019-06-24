@@ -4,7 +4,7 @@ $dbusername = "root";
 $dbpassword = "";
 $dbname = "cartdb";
 
-$Id = isset($_POST['id']) ? $_POST['id'] : '';
+// $Id = isset($_POST['id']) ? $_POST['id'] : '';
 $Name = isset($_POST['Name']) ? $_POST['Name'] : '';
 $Email = isset($_POST['Email']) ? $_POST['Email'] : '';
 $Password = isset($_POST['Password']) ? $_POST['Password'] : '';
@@ -16,13 +16,13 @@ $conn = new mysqli ($host, $dbusername, $dbpassword, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-$sql = "INSERT INTO users (id, Name, Email, Password, Credit,Status)
-VALUES ($Id, '$Name', '$Email', '$Password', $Credit,'$Status')";
+$insert = "INSERT INTO users (Name, Email, Password, Credit,Status)
+VALUES ('$Name', '$Email', '$Password', $Credit,'$Status')";
 
-if ($conn->query($sql) === TRUE) {
+if ($conn->query($insert) === TRUE) {
     header('Location: ../shopping-cart/index.php');
 } else 
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $insert . "<br>" . $conn->error;
 
 $conn->close();
 ?>

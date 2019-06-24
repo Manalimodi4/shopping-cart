@@ -4,8 +4,10 @@
     <title>Shopping Cart</title>
     <link href="styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="main.js"></script>
   </head>
 <body>
@@ -37,8 +39,8 @@ if (!$conn) {
 				</div>
 				<div class="modal-body">
 					<form method="POST" action="adduser.php">
-          <h4> User Id</h4>
-						<input type="number" id="id" name="id" placeholder="Enter Id"/><br />
+          <!-- <h4> User Id</h4>
+						<input type="number" id="id" name="id" placeholder="Enter Id"/><br /> -->
 						<h4>Name</h4>
 						<input type="text" id="Name" name="Name" placeholder="Enter name"/><br />
 						<h4>Email</h4>
@@ -57,12 +59,35 @@ if (!$conn) {
         </form>
 			</div>
 		</div>
+  </div>
+  <!-- delete modal -->
+  <div id="myModal2" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Delete record</h4>
+				</div>
+				<div class="modal-body">Are you sure you want to delete this
+					record?</div>
+				<form>
+					<input type="hidden" id="uniqueId" name="uniqueId">
+				</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" onClick=deleteRecord();>Delete</button>
+				</div>
+			</div>
+
+		</div>
 	</div>
   <!-- retrieve data from table -->
- <?php $sql = "SELECT * FROM users";
+  <?php $sql = "SELECT * FROM users";
 $result = mysqli_query($conn, $sql);
 
-echo "<table border='1'>
+echo '<table class="table table-bordered" id="data_table">
 <tr>
 <th>Id</th>
 <th>Name</th>
@@ -71,9 +96,8 @@ echo "<table border='1'>
 <th>Credit</th>
 <th>Status</th>
 <th>Edit</th>
-</tr>";
-
-
+<th>Delete</th>
+</tr>';
  if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()){
         
@@ -84,8 +108,8 @@ echo "<table border='1'>
         echo "<td>" . $row['Password'] . "</td>";
         echo "<td>" . $row['Credit'] . "</td>";
         echo "<td>" . $row['Status'] . "</td>";
-        echo "<td><a href='records.php?id=" . $row['id']. "'>Edit</a></td>";
-        echo "<td><a href='delete.php?id=" . $row['id'] . "'>Delete</a></td>";
+        echo "<td><button><a href='edit.php?id=" . $row['id']. "'>Edit</a></button></td>";
+        echo "<td><button><a onclick=\"return confirm('Do you really want to delete this record?')\" href='delete.php?id=" . $row['id'] . "'>Delete</a></button></td>";
         echo "</tr>";
     }
 }

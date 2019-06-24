@@ -21,7 +21,12 @@ input[type=email] {
     background: #f1f1f1;
 }
 
-table {
+.btn btn-primary {
+    margin-top: 10px;
+}
+
+
+/* table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -36,4 +41,4 @@ th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
-}
+} */
